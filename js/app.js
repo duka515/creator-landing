@@ -15,39 +15,31 @@
   setText("videoCount", c.videos);
   setText("photoCount", c.photos);
   setText("photoCountLabel", c.photos);
+  setText("tgSubs", c.subscribers);
+  setText("tgWelcome", c.welcome);
   setText("year", new Date().getFullYear());
-
-  if (c.name) {
-    document.title = c.name;
-    var ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", c.name);
-  }
+  if (c.name) document.title = c.name;
 
   var avatar = document.getElementById("avatar");
   if (avatar && c.avatar) avatar.src = c.avatar;
-
-  var headline = document.getElementById("popupHeadline");
-  if (headline && popup.headline) {
-    headline.innerHTML = popup.headline + ' "<span>' + (popup.brand || "") + '</span>"';
-  }
-  var steps = document.getElementById("popupSteps");
-  if (steps && popup.steps) {
-    steps.innerHTML = popup.steps.map(function (s) {
-      return "<div>" + s + "</div>";
-    }).join("");
-  }
+  var tgAvatar = document.getElementById("tgAvatar");
+  if (tgAvatar && c.avatar) tgAvatar.src = c.avatar;
   if (popup.button) setText("popupButton", popup.button);
-  var popupImg = document.getElementById("popupImage");
-  if (popupImg && popup.image) popupImg.src = popup.image;
+
+  var user = (c.telegramUser || "").replace("@", "").replace("https://t.me/", "");
+  var webUrl = user ? "https://t.me/" + user : "#";
+  var appUrl = user ? "tg://resolve?domain=" + user : "#";
 
   var overlay = document.getElementById("funnelOverlay");
   var join = document.getElementById("popupJoin");
-  var popupUrl = popup.url || "#join";
+  if (join) join.href = webUrl;
 
-  if (join) {
-    join.href = popupUrl;
-    join.target = "_blank";
-    join.rel = "noopener noreferrer";
+  function openTelegram() {
+    if (!user) return;
+    window.location.href = appUrl;
+    setTimeout(function () {
+      window.location.href = webUrl;
+    }, 700);
   }
 
   function openFunnel(e) {
@@ -56,23 +48,14 @@
       e.stopPropagation();
     }
     if (!overlay) return;
-    if (popup.enabled === false) {
-      if (popupUrl && popupUrl.indexOf("http") === 0) window.location.href = popupUrl;
-      return;
-    }
     overlay.hidden = false;
     overlay.style.display = "flex";
     overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.right = "0";
-    overlay.style.bottom = "0";
-    overlay.style.left = "0";
+    overlay.style.inset = "0";
     overlay.style.zIndex = "2147483647";
     overlay.style.alignItems = "center";
     overlay.style.justifyContent = "center";
     overlay.style.background = "rgba(0,0,0,0.78)";
-    overlay.style.backdropFilter = "blur(16px)";
-    overlay.style.webkitBackdropFilter = "blur(16px)";
     document.documentElement.classList.add("funnel-open");
     document.body.classList.add("funnel-open");
   }
@@ -89,6 +72,13 @@
   document.querySelectorAll(".js-open-funnel").forEach(function (el) {
     el.addEventListener("click", openFunnel);
   });
+
+  if (join) {
+    join.addEventListener("click", function (e) {
+      e.preventDefault();
+      openTelegram();
+    });
+  }
 
   var closeBtn = document.getElementById("popupClose");
   if (closeBtn) closeBtn.addEventListener("click", closeFunnel);
