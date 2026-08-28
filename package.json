@@ -1,0 +1,9 @@
+{
+  "name": "creator-landing",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static creator landing page",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r index.html dmca.html css js assets dist/"
+  }
+}
