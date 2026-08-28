@@ -1,28 +1,39 @@
-# Creator landing page
+# Creator landing template
 
-Dark neon one-page funnel (live show + exclusive content).
+Saved working template. Dark neon profile page + centered affiliate popup.
 
-Repo: https://github.com/duka515/creator-landing
+- Repo: https://github.com/duka515/creator-landing
+- Live example: https://emmadixon.site
 
-Replace the SVG placeholders with your own photos. Edit `js/config.js` for name, counts, and links.
+## Reuse for a new creator
 
-## Customize
+1. Copy this repo (GitHub → Use this template / Fork).
+2. Edit `js/config.js`:
+   - `name`
+   - `flag`
+   - `videos` / `photos`
+   - `popup.url` (Jerkmate / affiliate link)
+   - `popup.image`
+   - `avatar`
+3. Replace files in `assets/`:
+   - `avatar.jpg` profile photo
+   - `g1.jpg` – `g4.jpg` gallery
+   - `popup.jpg` popup banner
+4. Deploy on Hostinger → Deploy Web App → this repo
+   - Framework: Other
+   - Build: `npm run build`
+   - Output: `dist`
+   - Leave Entry file empty
 
-```js
-window.SITE = {
-  name: "YOUR NAME",
-  tagline: "Your favorite creator for exclusive content, live shows & more",
-  flag: "🇺🇸",
-  videos: 459,
-  photos: 981,
-  liveUrl: "https://example.com/live",
-  premiumUrl: "https://example.com/premium",
-  avatar: "assets/avatar.jpg",
-  dmcaEmail: "you@example.com"
-};
-```
+## Popup
 
-## GitHub Pages
+WATCH ME NOW, EXCLUSIVE CONTENT, gallery, and VIEW ALL open a centered card.
+Background blurs. Only **Join for Free** opens `popup.url`.
 
-Settings → Pages → Deploy from branch `main` / root.
-Live URL after that: https://duka515.github.io/creator-landing/
+## Files
+
+- `index.html` page + popup
+- `css/style.css` layout
+- `js/config.js` all text and links
+- `js/app.js` popup behavior
+- `dmca.html` legal page
