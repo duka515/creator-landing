@@ -4,22 +4,13 @@ window.SITE = {
   flag: "🇺🇸",
   videos: 459,
   photos: 981,
-  liveUrl: "https://example.com/live",
-  premiumUrl: "https://example.com/premium",
   avatar: "assets/avatar.svg",
   dmcaEmail: "dmca@example.com",
-
+  telegramUser: "yourchannel",
+  subscribers: "927 subscribers",
+  welcome: "Welcome to the channel! Here you'll find amazing photos, awesome videos, and exclusive content you won't want to miss.",
   popup: {
     enabled: true,
-    brand: "Jerkmate",
-    headline: "Watch explicit content for FREE in",
-    steps: [
-      "1- Create a FREE Jerkmate Account",
-      "2- Get the Free Lifetime Membership",
-      "3- Enjoy thousands of models like me"
-    ],
-    image: "assets/popup.svg",
-    button: "Join for Free",
-    url: "https://example.com/affiliate"
+    button: "VIEW IN TELEGRAM"
   }
 };
