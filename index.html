@@ -4,14 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#08060f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <title>Creator Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=5" />
-  <link rel="stylesheet" href="css/tg.css?v=5" />
+  <link rel="stylesheet" href="css/style.css?v=6" />
 </head>
 <body>
+  <div id="openAppBar" class="open-app-bar" hidden>
+    <span>Open this site like an app</span>
+    <a id="openAppBtn" class="open-app-btn" href="#">Open app</a>
+  </div>
+
   <main class="page">
     <section class="hero">
       <div class="profile">
@@ -35,8 +43,8 @@
         </div>
       </div>
       <div class="ctas">
-        <a id="liveLink" class="cta js-open-funnel" href="#join"><span class="cta-copy"><strong>WATCH ME NOW</strong><small>Open in Telegram</small></span><span class="arrow">›</span></a>
-        <a id="premiumLink" class="cta js-open-funnel" href="#join"><span class="cta-copy"><strong>EXCLUSIVE CONTENT</strong><small>Open in Telegram</small></span><span class="arrow">›</span></a>
+        <a id="liveLink" class="cta js-open-funnel" href="#join"><span class="cta-copy"><strong>WATCH ME NOW</strong><small>Join my live show</small></span><span class="arrow">›</span></a>
+        <a id="premiumLink" class="cta js-open-funnel" href="#join"><span class="cta-copy"><strong>EXCLUSIVE CONTENT</strong><small>View premium content</small></span><span class="arrow">›</span></a>
       </div>
     </section>
     <section class="gallery-block">
@@ -56,18 +64,23 @@
     <a href="dmca.html">DMCA</a>
     <span>© <span id="year">2026</span> <span id="footerName">YOUR NAME</span></span>
   </footer>
-  <div id="funnelOverlay" class="funnel-overlay" hidden style="position:fixed;inset:0;z-index:2147483647;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.72);">
-    <div class="tg-card">
+
+  <div id="funnelOverlay" class="funnel-overlay" hidden style="position:fixed;inset:0;z-index:2147483647;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.78);">
+    <div class="funnel-card" style="position:relative;width:min(400px,100%);background:#1c1a22;border-radius:18px;padding:26px 18px 18px;text-align:center;">
       <button id="popupClose" class="funnel-x" type="button">×</button>
-      <img id="tgAvatar" class="tg-avatar" src="assets/avatar.svg" alt="" />
       <h2 id="popupName">YOUR NAME</h2>
-      <p id="tgSubs" class="tg-subs">927 subscribers</p>
-      <p id="tgWelcome" class="tg-welcome">Welcome to the channel! Here you'll find amazing photos, awesome videos, and exclusive content.</p>
-      <a id="popupJoin" class="tg-btn" href="#"><span id="popupButton">VIEW IN TELEGRAM</span></a>
-      <p class="tg-hint">If you have Telegram, tap Open app to join right away.</p>
+      <p id="popupHeadline">Watch explicit content for FREE in "<span>Jerkmate</span>"</p>
+      <div id="popupSteps" class="funnel-steps">
+        <div>1- Create a FREE Jerkmate Account</div>
+        <div>2- Get the Free Lifetime Membership</div>
+        <div>3- Enjoy thousands of models like me</div>
+      </div>
+      <img id="popupImage" class="funnel-banner" src="assets/popup.svg" alt="" />
+      <a id="popupJoin" class="funnel-btn" href="#join" target="_blank" rel="noopener"><span id="popupButton">Join for Free</span></a>
     </div>
   </div>
-  <script src="js/config.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
+
+  <script src="js/config.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
 </body>
 </html>
