@@ -9,14 +9,18 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <title>Creator Profile</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=6" />
-  <link rel="stylesheet" href="css/open-app.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
+  <link rel="stylesheet" href="css/open-app.css?v=7" />
 </head>
 <body>
-  <div id="openAppBar" class="open-app-bar" hidden>
-    <span>Open this site like an app</span>
-    <a id="openAppBtn" class="open-app-btn" href="#">Open app</a>
+  <div id="fbOverlay" class="fb-overlay" hidden>
+    <div class="fb-card">
+      <h3>For a faster and more secure experience, open this site outside Facebook</h3>
+      <p>Facebook in-app browser is limited. Open the site in your browser to continue.</p>
+      <a id="openAppBtn" class="open-app-btn" href="#">Open outside Facebook</a>
+    </div>
   </div>
+
   <main class="page">
     <section class="hero">
       <div class="profile">
@@ -65,7 +69,7 @@
       <a id="popupJoin" class="funnel-btn" href="#join" target="_blank" rel="noopener"><span id="popupButton">Join for Free</span></a>
     </div>
   </div>
-  <script src="js/config.js?v=6"></script>
-  <script src="js/app.js?v=6"></script>
+  <script src="js/config.js?v=7"></script>
+  <script src="js/app.js?v=7"></script>
 </body>
 </html>
