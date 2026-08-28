@@ -260,79 +260,98 @@ footer {
 
 footer a { color: #8d8798; text-decoration: none; }
 
-body.modal-open .page,
-body.modal-open footer {
-  filter: blur(16px);
+html.funnel-open,
+body.funnel-open {
+  overflow: hidden;
+  height: 100%;
+}
+
+body.funnel-open .page,
+body.funnel-open footer {
+  filter: blur(14px);
   pointer-events: none;
 }
 
-.modal {
-  display: none;
+.funnel-overlay[hidden] { display: none !important; }
+
+.funnel-overlay {
   position: fixed;
-  inset: 0;
-  z-index: 50;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.62);
-  padding: 20px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  background: rgba(0, 0, 0, 0.72);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.modal.show { display: grid; }
-
-.modal-card {
+.funnel-card {
   position: relative;
-  width: min(420px, 100%);
+  width: min(400px, 100%);
+  margin: auto;
   background: #1c1a22;
   border-radius: 18px;
-  padding: 28px 22px 22px;
+  padding: 26px 18px 18px;
   text-align: center;
-  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  box-shadow: 0 20px 60px rgba(0,0,0,.55);
+  max-height: calc(100vh - 32px);
+  overflow: auto;
 }
 
-.modal-x {
+.funnel-x {
   position: absolute;
-  top: 10px;
-  right: 12px;
-  width: 32px;
-  height: 32px;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
   border: 0;
   border-radius: 50%;
   background: #2a2830;
   color: #fff;
-  font-size: 22px;
+  font-size: 24px;
+  line-height: 1;
   cursor: pointer;
 }
 
-.modal-card h2 {
+.funnel-card h2 {
   font-family: Georgia, "Times New Roman", serif;
   color: var(--pink);
-  font-size: 28px;
+  font-size: clamp(22px, 6vw, 30px);
   letter-spacing: 1px;
-  margin-bottom: 10px;
+  margin: 8px 28px 10px;
 }
 
 #popupHeadline {
   font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 12px;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 #popupHeadline span { font-style: italic; }
 
-.modal-steps {
+.funnel-steps {
   color: #cfc9d6;
-  font-size: 14px;
-  line-height: 1.7;
-  margin-bottom: 16px;
+  font-size: 13px;
+  line-height: 1.65;
+  margin-bottom: 12px;
 }
 
-.modal-banner {
+.funnel-banner {
   width: 100%;
+  max-height: 220px;
+  object-fit: cover;
   border-radius: 8px;
   display: block;
-  margin-bottom: 16px;
+  margin: 0 auto 14px;
 }
 
-.modal-btn {
+.funnel-btn {
   display: block;
   width: 100%;
   background: #111;
@@ -341,7 +360,7 @@ body.modal-open footer {
   border-radius: 999px;
   padding: 14px 16px;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .legal { padding: 48px 24px; }
