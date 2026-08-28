@@ -61,6 +61,18 @@
       return;
     }
     overlay.hidden = false;
+    overlay.style.display = "flex";
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.right = "0";
+    overlay.style.bottom = "0";
+    overlay.style.left = "0";
+    overlay.style.zIndex = "2147483647";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.background = "rgba(0,0,0,0.78)";
+    overlay.style.backdropFilter = "blur(16px)";
+    overlay.style.webkitBackdropFilter = "blur(16px)";
     document.documentElement.classList.add("funnel-open");
     document.body.classList.add("funnel-open");
   }
@@ -69,6 +81,7 @@
     if (e) e.preventDefault();
     if (!overlay) return;
     overlay.hidden = true;
+    overlay.style.display = "none";
     document.documentElement.classList.remove("funnel-open");
     document.body.classList.remove("funnel-open");
   }
