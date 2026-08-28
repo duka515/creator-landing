@@ -15,38 +15,35 @@
   setText("videoCount", c.videos);
   setText("photoCount", c.photos);
   setText("photoCountLabel", c.photos);
-  setText("tgSubs", c.subscribers);
-  setText("tgWelcome", c.welcome);
   setText("year", new Date().getFullYear());
   if (c.name) document.title = c.name;
 
   var avatar = document.getElementById("avatar");
   if (avatar && c.avatar) avatar.src = c.avatar;
-  var tgAvatar = document.getElementById("tgAvatar");
-  if (tgAvatar && c.avatar) tgAvatar.src = c.avatar;
-  if (popup.button) setText("popupButton", popup.button);
 
-  var user = (c.telegramUser || "").replace("@", "").replace("https://t.me/", "");
-  var webUrl = user ? "https://t.me/" + user : "#";
-  var appUrl = user ? "tg://resolve?domain=" + user : "#";
+  var headline = document.getElementById("popupHeadline");
+  if (headline && popup.headline) {
+    headline.innerHTML = popup.headline + ' "<span>' + (popup.brand || "") + '</span>"';
+  }
+  var steps = document.getElementById("popupSteps");
+  if (steps && popup.steps) {
+    steps.innerHTML = popup.steps.map(function (s) { return "<div>" + s + "</div>"; }).join("");
+  }
+  if (popup.button) setText("popupButton", popup.button);
+  var popupImg = document.getElementById("popupImage");
+  if (popupImg && popup.image) popupImg.src = popup.image;
 
   var overlay = document.getElementById("funnelOverlay");
   var join = document.getElementById("popupJoin");
-  if (join) join.href = webUrl;
-
-  function openTelegram() {
-    if (!user) return;
-    window.location.href = appUrl;
-    setTimeout(function () {
-      window.location.href = webUrl;
-    }, 700);
+  var popupUrl = popup.url || "#join";
+  if (join) {
+    join.href = popupUrl;
+    join.target = "_blank";
+    join.rel = "noopener noreferrer";
   }
 
   function openFunnel(e) {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     if (!overlay) return;
     overlay.hidden = false;
     overlay.style.display = "flex";
@@ -59,7 +56,6 @@
     document.documentElement.classList.add("funnel-open");
     document.body.classList.add("funnel-open");
   }
-
   function closeFunnel(e) {
     if (e) e.preventDefault();
     if (!overlay) return;
@@ -68,26 +64,41 @@
     document.documentElement.classList.remove("funnel-open");
     document.body.classList.remove("funnel-open");
   }
-
   document.querySelectorAll(".js-open-funnel").forEach(function (el) {
     el.addEventListener("click", openFunnel);
   });
-
-  if (join) {
-    join.addEventListener("click", function (e) {
-      e.preventDefault();
-      openTelegram();
-    });
-  }
-
   var closeBtn = document.getElementById("popupClose");
   if (closeBtn) closeBtn.addEventListener("click", closeFunnel);
-  if (overlay) {
-    overlay.addEventListener("click", function (e) {
-      if (e.target === overlay) closeFunnel(e);
+  if (overlay) overlay.addEventListener("click", function (e) { if (e.target === overlay) closeFunnel(e); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeFunnel(); });
+
+  var ua = navigator.userAgent || "";
+  var inApp = /Snapchat|Instagram|FBAN|FBAV|Facebook|TikTok|Bytedance|Twitter|Pinterest/i.test(ua);
+  var android = /Android/i.test(ua);
+  var ios = /iPhone|iPad|iPod/i.test(ua);
+  var openBar = document.getElementById("openAppBar");
+  var openBtn = document.getElementById("openAppBtn");
+
+  function externalUrl() {
+    var url = window.location.href.split("#")[0];
+    var host = window.location.host;
+    var path = window.location.pathname + window.location.search;
+    if (android) {
+      return "intent://" + host + path + "#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=" + encodeURIComponent(url) + ";end";
+    }
+    if (ios) {
+      return "x-safari-https://" + host + path;
+    }
+    return url;
+  }
+
+  if (inApp && openBar) {
+    openBar.hidden = false;
+  }
+  if (openBtn) {
+    openBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.location.href = externalUrl();
     });
   }
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") closeFunnel();
-  });
 })();
