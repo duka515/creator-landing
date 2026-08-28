@@ -1,3 +1,6 @@
-.open-app-bar[hidden]{display:none!important}
-.open-app-bar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#111;border-bottom:1px solid rgba(255,46,168,.3);font-size:14px}
-.open-app-btn{background:#ff2ea8;color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:8px 14px}
+.fb-overlay[hidden]{display:none!important}
+.fb-overlay{position:fixed;inset:0;z-index:2147483646;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.fb-card{width:min(360px,100%);background:#16131c;border:1px solid rgba(255,46,168,.35);border-radius:18px;padding:28px 20px 20px;text-align:center}
+.fb-card h3{font-size:20px;line-height:1.35;margin-bottom:10px}
+.fb-card p{color:#c9c4d4;font-size:14px;line-height:1.5;margin-bottom:18px}
+.open-app-btn{display:block;width:100%;background:#ff2ea8;color:#fff;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 16px}
