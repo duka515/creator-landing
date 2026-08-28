@@ -73,10 +73,15 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeFunnel(); });
 
   var ua = navigator.userAgent || "";
-  var inApp = /Snapchat|Instagram|FBAN|FBAV|Facebook|TikTok|Bytedance|Twitter|Pinterest/i.test(ua);
+  var isFacebook = /FBAN|FBAV|FB_IAB|FB4A|FBIOS|Facebook/i.test(ua);
+  var isInstagram = /Instagram/i.test(ua);
+  var isSnap = /Snapchat/i.test(ua);
+  var isTikTok = /TikTok|Bytedance|musical_ly/i.test(ua);
+  var onlyFacebook = isFacebook && !isInstagram && !isSnap && !isTikTok;
+
   var android = /Android/i.test(ua);
   var ios = /iPhone|iPad|iPod/i.test(ua);
-  var openBar = document.getElementById("openAppBar");
+  var fbOverlay = document.getElementById("fbOverlay");
   var openBtn = document.getElementById("openAppBtn");
 
   function externalUrl() {
@@ -92,8 +97,11 @@
     return url;
   }
 
-  if (inApp && openBar) {
-    openBar.hidden = false;
+  if (onlyFacebook && fbOverlay) {
+    fbOverlay.hidden = false;
+    fbOverlay.style.display = "flex";
+    document.documentElement.classList.add("funnel-open");
+    document.body.classList.add("funnel-open");
   }
   if (openBtn) {
     openBtn.addEventListener("click", function (e) {
