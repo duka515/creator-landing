@@ -2,24 +2,24 @@
 .fb-overlay{position:fixed;inset:0;z-index:2147483646;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(8,6,15,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 .open-app-btn{display:block;width:min(340px,100%);background:#1877f2;color:#fff;text-decoration:none;font-weight:700;font-size:16px;line-height:1.35;text-align:center;border-radius:16px;padding:18px 20px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
 
+.cta,
 .funnel-btn{
-  display:block;
-  width:100%;
-  cursor:pointer;
-  background:linear-gradient(90deg,#ff4ec8,#ff2ea8 50%,#ff6ad5);
-  background-size:200% 200%;
+  background:linear-gradient(90deg,#ff4ec8,#ff2ea8 50%,#ff6ad5) !important;
+  background-size:200% 200% !important;
   color:#fff !important;
-  text-decoration:none;
-  border:0;
-  border-radius:999px;
-  padding:16px 18px;
-  font-weight:800;
-  font-size:18px;
-  letter-spacing:.04em;
+  border:0 !important;
+  border-radius:999px !important;
   box-shadow:0 0 0 0 rgba(255,46,168,.7), 0 10px 24px rgba(255,46,168,.35);
   animation:joinPulse 1.6s ease-out infinite, joinShine 3s linear infinite;
 }
-.funnel-btn:hover{filter:brightness(1.08)}
+.cta{padding:16px 20px !important}
+.cta-copy strong,.cta-copy small,.cta .arrow{color:#fff !important}
+.cta .arrow{border-color:rgba(255,255,255,.55) !important}
+.funnel-btn{
+  display:block;width:100%;cursor:pointer;text-decoration:none;
+  padding:16px 18px;font-weight:800;font-size:18px;letter-spacing:.04em;
+}
+.cta:hover,.funnel-btn:hover{filter:brightness(1.08)}
 @keyframes joinPulse{
   0%{box-shadow:0 0 0 0 rgba(255,46,168,.55), 0 10px 24px rgba(255,46,168,.35);transform:scale(1)}
   70%{box-shadow:0 0 0 16px rgba(255,46,168,0), 0 10px 24px rgba(255,46,168,.35);transform:scale(1.03)}
