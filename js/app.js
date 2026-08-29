@@ -35,11 +35,20 @@
 
   var overlay = document.getElementById("funnelOverlay");
   var join = document.getElementById("popupJoin");
-  var popupUrl = popup.url || "#join";
+  var popupUrl = popup.url || "";
+
+  function goAffiliate() {
+    if (!popupUrl) return;
+    window.open(popupUrl, "_blank", "noopener");
+  }
+
   if (join) {
-    join.href = popupUrl;
-    join.target = "_blank";
-    join.rel = "noopener noreferrer";
+    join.removeAttribute("href");
+    join.setAttribute("role", "button");
+    join.addEventListener("click", function (e) {
+      e.preventDefault();
+      goAffiliate();
+    });
   }
 
   function openFunnel(e) {
